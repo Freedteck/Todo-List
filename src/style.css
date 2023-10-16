@@ -1,0 +1,116 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    gap: 20px;
+    text-align: center;
+}
+
+header {
+    grid-row: 1;
+    background-color: tomato;
+    padding: 20px;
+}
+
+main {
+    background-color: tan;
+    text-align: start;
+    padding: 20px;
+}
+
+main .todo-container {
+    display: grid;
+    margin-top: 10px;
+    gap: 20px;
+}
+
+main .add-todo {
+    margin-top: 10px;
+}
+
+.add-todo button {
+    padding: 5px 15px;
+}
+
+.section {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 15px;
+}
+.section div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+.sidebar {
+    grid-column: 1;
+    background-color: teal;
+    grid-row: 1 / 4;
+    padding: 20px;
+    display: grid;
+    align-content: flex-start;
+    gap: 30px;
+    grid-template-rows: 100px, repeat(3, 35%);
+}
+
+.sidebar div {
+    background-color: white;
+    padding: 20px;
+    text-align: start;
+    border-radius: 15px;
+}
+
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .projects, .sidebar .todos {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.complete::after {
+    content: 'Completed';
+    background-color: teal;
+    color: white;
+    padding: 2px 7px;
+    border-radius: 15px;
+    margin-left: 15px;
+}
+.sideBar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+.sideBar-container div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    padding: 0;
+}
+footer {
+    grid-row: 3;
+    background-color: tomato;
+    padding: 20px;
+}
