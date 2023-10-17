@@ -47,10 +47,13 @@ addTodo.addEventListener('click', () => {
     } else {
         alert('Pls create a project')
         const name = prompt('Enter Project name ')
-        addProject(name)
-        createTodo(title, desc, dueDate, priority, projectCat, isComplete);
-        updateTodo()
-        updateProject()
+        if (!getProject().includes(name)) {
+            addProject(name)
+            createTodo(title, desc, dueDate, priority, name, isComplete);
+            updateTodo()
+            updateProject()
+        }
+
     }
 
 })
