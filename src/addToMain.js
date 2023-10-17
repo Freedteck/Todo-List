@@ -13,6 +13,7 @@ export default function addToMain(todo, mainContainer, index, updateTodo) {
     const description = document.createElement('p');
     const date = document.createElement('p');
     const priority = document.createElement('p');
+    // const projectCategory = document.createElement('p');
     const image = new Image()
     const read = new Image()
 
@@ -26,7 +27,17 @@ export default function addToMain(todo, mainContainer, index, updateTodo) {
     title.textContent = todo.title
     description.textContent = todo.desc
     date.textContent = todo.dueDate
-    priority.textContent = todo.priority
+    priority.style.width = '20px'
+    priority.style.height = '20px'
+    priority.style.borderRadius = '50%'
+
+    if (todo.priority === '1') {
+
+        priority.style.backgroundColor = 'green'
+    } else if (todo.priority === '2') {
+
+        priority.style.backgroundColor = 'blue'
+    }
 
     topDiv.appendChild(title)
     topDiv.appendChild(image)
@@ -38,12 +49,14 @@ export default function addToMain(todo, mainContainer, index, updateTodo) {
     section.appendChild(line)
     section.appendChild(bottomDiv)
     section.appendChild(dateAndPrio)
+    // section.appendChild(projectCategory)
     mainContainer.appendChild(section)
 
     image.addEventListener('click', () => {
         deleteTodo(index)
         updateTodo()
     })
+
 
     if (todo.complete) {
         title.classList.add('complete');

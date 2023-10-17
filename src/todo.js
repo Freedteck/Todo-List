@@ -1,11 +1,12 @@
 const todo = []; // Array of Todos
 
-const createTodo = (title, desc, dueDate, priority, complete) => {
+const createTodo = (title, desc, dueDate, priority, projectCat, complete) => {
     const todoDetails = {
         title,
         desc,
         dueDate,
         priority,
+        projectCat,
         complete,
     }
 

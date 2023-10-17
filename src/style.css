@@ -55,12 +55,14 @@ main .add-todo {
     gap: 20px;
     border-radius: 15px;
 }
+
 .section div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0;
 }
+
 .sidebar {
     grid-column: 1;
     background-color: teal;
@@ -69,10 +71,10 @@ main .add-todo {
     display: grid;
     align-content: flex-start;
     gap: 30px;
-    grid-template-rows: 100px, repeat(3, 35%);
+    grid-template-rows: 100px, repeat(2, 50%);
 }
 
-.sidebar div {
+.sidebar > div {
     background-color: white;
     padding: 20px;
     text-align: start;
@@ -82,13 +84,18 @@ main .add-todo {
 .sidebar ul {
     display: flex;
     flex-direction: column;
+    gap: 30px;
 }
 
-.sidebar .projects, .sidebar .todos {
+.sidebar .projects,
+.sidebar .todos {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    height: 100%;
+    overflow-y: auto;
 }
+
 .complete::after {
     content: 'Completed';
     background-color: teal;
@@ -97,18 +104,20 @@ main .add-todo {
     border-radius: 15px;
     margin-left: 15px;
 }
-.sideBar-container {
+
+.todos .sideBar-container, .projects .sideBar-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0;
 }
+
 .sideBar-container div {
     display: flex;
     justify-content: flex-end;
     gap: 5px;
     padding: 0;
 }
+
 footer {
     grid-row: 3;
     background-color: tomato;
