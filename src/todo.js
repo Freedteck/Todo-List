@@ -12,7 +12,7 @@ const createTodo = (title, desc, dueDate, priority, complete) => {
     todo.push(todoDetails)
 }
 
-const  deleteTodo = (index) => {
+const deleteTodo = (index) => {
     todo.splice(index, 1)
 }
 
