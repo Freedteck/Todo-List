@@ -15,10 +15,50 @@
         </header>
         <main>
             <div class="heading">
-                <h2>All</h2>
                 <div class="add-todo">
                     <button>+ Add</button>
                 </div>
+                <dialog id="todo-dialog">
+                    <form action="">
+                        <fieldset>
+                            <legend>Add New Todo</legend>
+                            <label for="title">
+                                Title
+                                <input type="text" name="title" id="title">
+                            </label>
+
+                            <textarea name="description" id="description" cols="30" rows="10"
+                                placeholder="Describe your Todo"></textarea>
+
+                            <div class="lower-form">
+                                <label for="priority">
+                                    <select name="priority" id="priority">
+                                        <option value="" disabled selected>Select Priority</option>
+                                        <option value="highest">Highest</option>
+                                        <option value="high">High</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="low">Low</option>
+                                        <option value="lowest">Lowest</option>
+                                    </select>
+                                </label>
+                                <label for="priority">
+                                    <select name="priority" id="project">
+                                        <option value="" disabled selected id="default-p">Add To Project</option>
+                                        <option value="coding" class="opt">Coding</option>
+                                        <option value="exercise" class="opt">Exercise</option>
+                                        <option value="reading" class="opt">Reading</option>
+                                    </select>
+                                </label>
+                                <label for="priority">
+                                    <select name="priority" id="date">
+                                        <option value="" disabled selected>Select Date</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button type="submit" id="submit">Create</button>
+                        </fieldset>
+                    </form>
+                </dialog>
             </div>
             <div class="todo-container"></div>
         </main>
