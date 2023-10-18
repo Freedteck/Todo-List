@@ -10,6 +10,15 @@ const addTodo = document.querySelector('.add-todo');
 const mainContainer = document.querySelector('.todo-container');
 const sideBarTodo = document.getElementById('todo-list')
 const projectSide = document.getElementById('project-list')
+const dialog = document.getElementById('todo-dialog')
+const submit = document.getElementById('submit')
+
+const userTitle = document.getElementById('title')
+const userDesc = document.getElementById('description')
+const userPrior = document.getElementById('priority')
+const userProject = document.getElementById('project')
+const userDate = document.getElementById('date')
+
 
 // Logic to update todo
 const updateTodo = () => {
@@ -30,30 +39,28 @@ const updateProject = () => {
 }
 
 updateProject()
-
 // EventListeners
+let choosenProject = ''
+const defaultProject = userProject.value
 addTodo.addEventListener('click', () => {
-    const title = prompt('Enter title', 'Testing')
-    const desc = prompt('Enter description', 'Mode')
-    const dueDate = prompt('Enter date', '2')
-    const priority = prompt('Enter priority', '1')
-    const projectCat = prompt('Enter cate', 'Coding')
+    dialog.show()
+    userProject.value = defaultProject
+    choosenProject = defaultProject
+})
+
+userProject.addEventListener('change', () => {
+    choosenProject = userProject.selectedOptions[0].text
+})
+submit.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    const title = userTitle.value
+    const desc = userDesc.value
+    let projectCat = choosenProject
+    const dueDate = date.value
     let isComplete = false
-
-    if (getProject().includes(projectCat)) {
-        createTodo(title, desc, dueDate, priority, projectCat, isComplete);
-        updateTodo()
-        // updateProject()
-    } else {
-        alert('Pls create a project')
-        const name = prompt('Enter Project name ')
-        if (!getProject().includes(name)) {
-            addProject(name)
-            createTodo(title, desc, dueDate, priority, name, isComplete);
-            updateTodo()
-            updateProject()
-        }
-
-    }
-
+    createTodo(title, desc, dueDate, priority, projectCat, isComplete);
+    updateTodo()
+    dialog.close()
+    console.log(projectCat);
 })

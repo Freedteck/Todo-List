@@ -31,6 +31,7 @@ main {
     background-color: tan;
     text-align: start;
     padding: 20px;
+    position: relative;
 }
 
 main .todo-container {
@@ -111,6 +112,34 @@ main .add-todo {
     justify-content: space-between;
 }
 
+#todo-dialog {
+    margin: auto;
+    border: none;
+    width: 80%;
+    padding: 20px;
+}
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+input {
+    display: block;
+    width: 100%;
+}
+input, textarea, select {
+    outline: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.lower-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .sideBar-container div {
     display: flex;
     justify-content: flex-end;
