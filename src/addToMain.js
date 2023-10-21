@@ -1,7 +1,7 @@
 import check from './check.svg'
 import deleteIcon from './delete.svg'
 import { deleteTodo, completeTodo, getTodo } from "./todo";
-import { updateApp } from '.';
+import { updateApp, removeFromStorage } from '.';
 
 export default function addToMain(mainContainer) {
     mainContainer.innerHTML = ''
@@ -85,6 +85,7 @@ export default function addToMain(mainContainer) {
 
         image.addEventListener('click', () => {
             deleteTodo(index)
+            removeFromStorage(index)
             updateApp()
         })
 

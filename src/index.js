@@ -1,10 +1,10 @@
 import './style.css'
 import addToMain from './addToMain';
 import addToSide from './addToSide';
-import { createTodo } from "./todo";
+import { createTodo, getTodo } from "./todo";
 import { getProject, addProject } from './project';
 import addToProject from './addToProject';
-import { format, compareAsc } from 'date-fns'
+import { format } from 'date-fns'
 
 // Dom Variables
 const addTodo = document.querySelector('.add-todo');
@@ -50,7 +50,6 @@ const updateProject = () => {
 
 updateProject()
 
-
 let choosenProject = ''
 let choosenPriority = ''
 let defaultPriority = userPrior.value
@@ -83,6 +82,7 @@ export const updateP = () => {
         userProject.insertAdjacentHTML("beforeend", data)
     })
 }
+
 updateP()
 
 document.querySelector(".former").addEventListener("submit", (e) => {
@@ -96,7 +96,7 @@ document.querySelector(".former").addEventListener("submit", (e) => {
     let isComplete = false
 
     createTodo(title, desc, dueDate, priority, projectCat, isComplete);
-
+    saveToStorage()
     updateApp()
     dialog.close()
 
@@ -121,6 +121,61 @@ plusProject.addEventListener('click', () => {
 projectTitle.addEventListener('mouseover', () => {
     plusProject.style.display = 'block'
 })
-projectTitle.addEventListener('mouseout', ()=> {
+
+projectTitle.addEventListener('mouseout', () => {
     plusProject.style.display = 'none'
 })
+
+const saveToStorage = () => {
+    const todoList = getTodo()
+
+    todoList.forEach((todo, index) => {
+        localStorage.setItem(`todo_${index}`, JSON.stringify(todo))
+    })
+
+}
+
+export const removeFromStorage = () => {
+    const todoList = getTodo()
+    todoList.forEach((todo, index) => {
+        // if (localStorage) {
+        localStorage.removeItem(`todo_${index}`)
+        // }
+    })
+
+}
+
+const getFromStorage = () => {
+    const todoList = getTodo();
+    // let index = 0;
+
+    let todos = ''
+
+    // while (index < todoList.length) {
+    //     const todo = JSON.parse(localStorage.getItem(`todo_${index}`));
+    //     index++
+    // }
+
+    // // Retrieve to-do items from localStorage and create them
+    // while (true) {
+    // //   const todo = JSON.parse(localStorage.getItem(`todo_${index}`));
+    //   if (todo === null) {
+    //     break; // Exit the loop when no more to-do items are found
+    //   }
+
+    //   todoList.push(todo);
+    //   index++;
+    // }
+
+    todoList.forEach((todo, index) => {
+        todos = JSON.parse(localStorage.getItem(`todo_${index}`));
+
+        createTodo(todos.title, todos.desc, todos.dueDate, todos.priority, todos.projectCat, todos.isComplete);
+        // console.log(todos);
+        updateApp();
+    });
+
+    console.log(todoList);
+};
+
+getFromStorage();
