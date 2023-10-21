@@ -1,8 +1,10 @@
 import deleteIcon from './delete.svg'
 import { removeProject, getProject } from './project'
 import { getTodo, deleteTodo } from './todo'
+import { updateApp } from '.'
+import { updateP } from '.'
 
-export default function addToProject(project, projectTodo, index, updateTodo) {
+export default function addToProject(project, projectTodo, index) {
     const sideContainer = document.createElement('div')
     const list = document.createElement('li')
     const div = document.createElement('div')
@@ -12,6 +14,8 @@ export default function addToProject(project, projectTodo, index, updateTodo) {
     sideContainer.classList.add('sideBar-container')
     image.src = deleteIcon
     image.width = 20
+
+    image.style.display = 'none'
 
     let counter = updateCount(project, getTodo)
     list.textContent = project
@@ -24,18 +28,23 @@ export default function addToProject(project, projectTodo, index, updateTodo) {
 
     image.addEventListener('click', () => {
         removeProject(index)
-        updateTodo()
-        // Remove all todos with the same project name
+
         const todos = getTodo();
         for (let i = todos.length - 1; i >= 0; i--) {
             if (todos[i].projectCat === project) {
                 deleteTodo(i);
-                updateTodo()
             }
         }
-
+        updateP()
+        updateApp()
     })
 
+    sideContainer.addEventListener('mouseover', () => {
+        image.style.display = 'block'
+    })
+    sideContainer.addEventListener('mouseout', () => {
+        image.style.display = 'none'
+    })
 }
 
 function updateCount(project, getTodo) {
