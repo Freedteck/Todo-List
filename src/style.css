@@ -14,6 +14,12 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+button {
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid green;
+}
+
 .container {
     height: 100%;
     display: grid;
@@ -32,18 +38,18 @@ header {
 
 main {
     text-align: start;
-    padding: 20px;
+    /* padding: 20px; */
     position: relative;
 }
 
 main .todo-container {
     display: grid;
-    margin-top: 20px;
+    margin-top: 2.3em;
     gap: 30px;
 }
 
 main .add-todo {
-    margin-top: 10px;
+    margin: 5px 20px;
 }
 
 .add-todo button {
@@ -220,4 +226,11 @@ button:hover {
     align-items: center;
     gap: 10px;
     font-size: 1.3rem;
+}
+
+.top-bar {
+    background-color: #f37165;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 3em;
 }

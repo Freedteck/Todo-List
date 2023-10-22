@@ -9,7 +9,7 @@ import plusIcon from './plus.svg'
 import { format } from 'date-fns'
 
 // Dom Variables
-const addTodo = document.querySelector('.add-todo');
+const addTodo = document.querySelector('.add-todo button');
 const mainContainer = document.querySelector('.todo-container');
 const sideBarTodo = document.getElementById('todo-list')
 const projectSide = document.getElementById('project-list')
@@ -18,6 +18,10 @@ const cancel = document.getElementById('cancel')
 const plusProject = document.querySelector('.add-project')
 const projectTitle = document.querySelector('.projects .top')
 const todoLogo = document.getElementById('todo-logo')
+const all = document.querySelector('.all')
+const mainContent = document.querySelector('.main-content')
+const completed = document.querySelector('.completed')
+const project = document.querySelector('.project')
 
 const userTitle = document.getElementById('title')
 const userDesc = document.getElementById('description')
@@ -203,3 +207,29 @@ const getFromStorage = () => {
 };
 
 getFromStorage();
+
+all.addEventListener('click', () => {
+    mainContent.innerHTML = ''
+    mainContent.appendChild(mainContainer)
+})
+
+project.addEventListener('click', () => {
+    mainContent.innerHTML = ''
+    mainContent.style.padding = '20px'
+    const lists = showProjects()
+    mainContent.appendChild(lists)
+})
+const showProjects = () => {
+    const lists = document.createElement('ul');
+    getProject().forEach((project, index) => {
+        const li = document.createElement('li');
+        li.textContent = project;
+        lists.appendChild(li); // Append the list item to the list
+    });
+    return lists;
+};
+
+completed.addEventListener('click', () => {
+    mainContent.innerHTML = ''
+    
+})
