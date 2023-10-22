@@ -4,6 +4,7 @@ import addToSide from './addToSide';
 import { createTodo, getTodo } from "./todo";
 import { getProject, addProject } from './project';
 import addToProject from './addToProject';
+import calendar from './calendar-check.svg'
 import { format } from 'date-fns'
 
 // Dom Variables
@@ -15,6 +16,7 @@ const dialog = document.getElementById('todo-dialog')
 const cancel = document.getElementById('cancel')
 const plusProject = document.querySelector('.add-project')
 const projectTitle = document.querySelector('.projects .top')
+const todoLogo = document.getElementById('todo-logo')
 
 const userTitle = document.getElementById('title')
 const userDesc = document.getElementById('description')
@@ -22,6 +24,7 @@ const userPrior = document.getElementById('priority')
 export const userProject = document.getElementById('project')
 const userDate = document.getElementById('date')
 
+todoLogo.src = calendar
 const day = new Date()
 const year = day.getFullYear()
 const month = day.getMonth() + 1
