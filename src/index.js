@@ -129,93 +129,75 @@ projectTitle.addEventListener('mouseout', () => {
     plusProject.style.display = 'none'
 })
 
-/* const saveToStorage = () => {
-    const todoList = getTodo()
+export const saveToStorage = () => {
+    localStorage.clear()
+    const todoList = getTodo();
+    const projectList = getProject()
 
+    // Save each to-do item individually with a unique key
     todoList.forEach((todo, index) => {
-        localStorage.setItem(`todo_${index}`, JSON.stringify(todo))
+        localStorage.setItem(`todo_${index}`, JSON.stringify(todo));
+    });
+    projectList.forEach((project, index) => {
+        localStorage.setItem(`project_${index}`, project)
     })
+};
 
-}
+export const removeTodoFromStorage = () => {
+    const todoList = getTodo();
 
-export const removeFromStorage = () => {
-    const todoList = getTodo()
+    // Remove each to-do item from localStorage
     todoList.forEach((todo, index) => {
-        // if (localStorage) {
-        localStorage.removeItem(`todo_${index}`)
-        // }
-    })
+        localStorage.removeItem(`todo_${index}`);
+    });
+};
 
+export const removeProjectFromStorage = () => {
+    const projectList = getProject()
+
+    projectList.forEach((project, index) => {
+        localStorage.removeItem(`project_${index}`)
+    })
 }
 
 const getFromStorage = () => {
-    const todoList = getTodo();
-     let index = 0;
+    const todoList = [];
+    const projectList = [];
+    let index = 0;
 
+    // Retrieve to-do items and projects from localStorage
+    while (true) {
+        const todo = JSON.parse(localStorage.getItem(`todo_${index}`));
+        const project = localStorage.getItem(`project_${index}`);
 
-    // // Retrieve to-do items from localStorage and create them
-     while (true) {
-       const todo = JSON.parse(localStorage.getItem(`todo_${index}`));
-       if (todo === null) {
-        break; // Exit the loop when no more to-do items are found
-       }
+        if (todo === null && project === null) {
+            break; // Exit the loop when no more to-do items or projects are found
+        }
 
-       todoList.push(todo);
-      index++;
+        if (todo !== null) {
+            todoList.push(todo);
+        }
+
+        if (project !== null) {
+            projectList.push(project);
+        }
+
+        index++;
     }
 
-    todoList.forEach((todo, index) => {
-
-        createTodo(todo.title, todo.desc, todo.dueDate, todo.priority, todo.projectCat, todo.isComplete);
-        // console.log(todos);
+    todoList.forEach((todo) => {
+        createTodo(todo.title, todo.desc, todo.dueDate, todo.priority, todo.projectCat, todo.complete);
         updateApp();
     });
 
-    console.log(todoList);
-};
+    // projectList.forEach(project => {
+    //     projectSide.innerHTML = ''
+    //     addProject(project)
+    //     updateProject()
+    // })
 
-getFromStorage();
- */
- 
-export const saveToStorage = () => {
- 
-  localStorage.clear()
-  const todoList = getTodo();
-  
-  // Save each to-do item individually with a unique key
-  todoList.forEach((todo, index) => {
-    localStorage.setItem(`todo_${index}`, JSON.stringify(todo));
-  });
-};
-
-export const removeFromStorage = () => {
-  const todoList = getTodo();
-  
-  // Remove each to-do item from localStorage
-  todoList.forEach((todo, index) => {
-    localStorage.removeItem(`todo_${index}`);
-  });
-};
-
-const getFromStorage = () => {
-  const todoList = [];
-  let index = 0;
-
-  // Retrieve to-do items from localStorage and create them
-  while (true) {
-    const todo = JSON.parse(localStorage.getItem(`todo_${index}`));
-    if (todo === null) {
-      break; // Exit the loop when no more to-do items are found
-    }
-    
-    todoList.push(todo);
-    index++;
-  }
-
-  todoList.forEach((todo) => {
-    createTodo(todo.title, todo.desc, todo.dueDate, todo.priority, todo.projectCat, todo.isComplete);
-    updateApp();
-  });
+    console.table(todoList);
+    console.table(projectList);
 };
 
 getFromStorage();

@@ -1,7 +1,7 @@
 import check from './check.svg'
 import deleteIcon from './delete.svg'
 import { deleteTodo, completeTodo, getTodo } from "./todo";
-import { updateApp, removeFromStorage, saveToStorage } from '.';
+import { updateApp, removeTodoFromStorage, saveToStorage } from '.';
 
 export default function addToMain(mainContainer) {
     mainContainer.innerHTML = ''
@@ -43,27 +43,27 @@ export default function addToMain(mainContainer) {
         switch (todo.priority) {
             case 'highest':
                 priority.style.backgroundColor = 'red'
-                date.style.backgroundColor = "red"
-                date.style.color = "orange"
+                date.style.borderColor = "red"
+                date.style.color = "red"
                 break;
             case 'high':
                 priority.style.backgroundColor = 'orange'
-                date.style.backgroundColor = "orange"
-                date.style.color = "white"
+                date.style.borderColor = "orange"
+                date.style.color = "orange"
                 break;
             case 'normal':
                 priority.style.backgroundColor = 'green'
-                date.style.backgroundColor = "green"
-                date.style.color = "white"
+                date.style.borderColor = "green"
+                date.style.color = "green"
                 break;
             case 'low':
                 priority.style.backgroundColor = 'blue'
-                date.style.backgroundColor = "blue"
-                date.style.color = "white"
+                date.style.borderColor = "blue"
+                date.style.color = "blue"
                 break;
             case 'lowest':
                 priority.style.backgroundColor = 'lightblue'
-                date.style.backgroundColor = "lightblur"
+                date.style.borderColor = "green"
                 date.style.color = "green"
             default:
                 break;
@@ -85,13 +85,13 @@ export default function addToMain(mainContainer) {
 
         image.addEventListener('click', () => {
             deleteTodo(index)
-            removeFromStorage()
+            removeTodoFromStorage()
             saveToStorage()
             updateApp()
         })
 
 
-        if (todo.complete) {
+        if (todo.complete == true) {
             title.classList.add('complete');
         }
 
@@ -99,11 +99,11 @@ export default function addToMain(mainContainer) {
             if (!todo.complete) {
                 title.classList.add('complete');
                 completeTodo(todo)
-
             } else {
                 title.classList.remove('complete');
                 completeTodo(todo)
             }
+            saveToStorage()
         });
 
         section.addEventListener('mouseover', () => {

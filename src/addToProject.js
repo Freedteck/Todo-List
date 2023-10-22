@@ -1,8 +1,7 @@
 import deleteIcon from './delete.svg'
 import { removeProject, getProject } from './project'
 import { getTodo, deleteTodo } from './todo'
-import { updateApp } from '.'
-import { updateP } from '.'
+import { updateApp, updateP, saveToStorage, removeProjectFromStorage } from '.'
 
 export default function addToProject(project, projectTodo, index) {
     const sideContainer = document.createElement('div')
@@ -36,6 +35,8 @@ export default function addToProject(project, projectTodo, index) {
             }
         }
         updateP()
+        removeProjectFromStorage()
+        saveToStorage()
         updateApp()
     })
 

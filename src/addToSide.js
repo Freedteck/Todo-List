@@ -1,7 +1,7 @@
 import check from './check.svg'
 import deleteIcon from './delete.svg'
 import { deleteTodo, completeTodo, getTodo } from "./todo";
-import { updateApp, removeFromStorage, saveToStorage } from '.';
+import { updateApp, removeTodoFromStorage, saveToStorage } from '.';
 
 export default function addToSide(sideBarTodo) {
     sideBarTodo.innerHTML = ''
@@ -27,7 +27,7 @@ export default function addToSide(sideBarTodo) {
 
         image.addEventListener('click', () => {
             deleteTodo(index)
-            removeFromStorage()
+            removeTodoFromStorage()
             saveToStorage()
             updateApp()
         })
@@ -40,6 +40,7 @@ export default function addToSide(sideBarTodo) {
                 completeTodo(todo)
                 updateApp()
             }
+            saveToStorage()
         })
 
         sideContainer.addEventListener('mouseover', () => {
