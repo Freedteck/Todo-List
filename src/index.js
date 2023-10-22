@@ -5,6 +5,7 @@ import { createTodo, getTodo } from "./todo";
 import { getProject, addProject } from './project';
 import addToProject from './addToProject';
 import calendar from './calendar-check.svg'
+import plusIcon from './plus.svg'
 import { format } from 'date-fns'
 
 // Dom Variables
@@ -25,6 +26,7 @@ export const userProject = document.getElementById('project')
 const userDate = document.getElementById('date')
 
 todoLogo.src = calendar
+plusProject.src = plusIcon
 const day = new Date()
 const year = day.getFullYear()
 const month = day.getMonth() + 1
