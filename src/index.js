@@ -87,7 +87,6 @@ export const updateP = () => {
 }
 
 updateP()
-
 document.querySelector(".former").addEventListener("submit", (e) => {
     e.preventDefault()
 
@@ -113,6 +112,7 @@ plusProject.addEventListener('click', () => {
     const projectName = prompt('Enter project Name: ', 'Any')
     if (!getProject().includes(projectName) && projectName != null) {
         addProject(projectName);
+        saveToStorage()
         updateApp()
         updateP()
     } else {
@@ -187,14 +187,14 @@ const getFromStorage = () => {
 
     todoList.forEach((todo) => {
         createTodo(todo.title, todo.desc, todo.dueDate, todo.priority, todo.projectCat, todo.complete);
-        updateApp();
     });
 
-    // projectList.forEach(project => {
-    //     projectSide.innerHTML = ''
-    //     addProject(project)
-    //     updateProject()
-    // })
+    getProject().length = 0
+    projectList.forEach(project => {
+        addProject(project)
+    })
+    updateP()
+    updateApp()
 
     console.table(todoList);
     console.table(projectList);

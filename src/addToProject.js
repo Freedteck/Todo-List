@@ -27,13 +27,13 @@ export default function addToProject(project, projectTodo, index) {
 
     image.addEventListener('click', () => {
         removeProject(index)
-
         const todos = getTodo();
         for (let i = todos.length - 1; i >= 0; i--) {
             if (todos[i].projectCat === project) {
                 deleteTodo(i);
             }
         }
+        
         updateP()
         removeProjectFromStorage()
         saveToStorage()
