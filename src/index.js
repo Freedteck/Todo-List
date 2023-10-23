@@ -5,6 +5,7 @@ import { createTodo, getTodo } from "./todo";
 import { getProject, addProject } from './project';
 import addToProject from './addToProject';
 import calendar from './calendar-check.svg'
+import deleteIcon from './delete.svg'
 import plusIcon from './plus.svg'
 import { format } from 'date-fns'
 
@@ -19,7 +20,7 @@ const plusProject = document.querySelector('.add-project')
 const projectTitle = document.querySelector('.projects .top')
 const todoLogo = document.getElementById('todo-logo')
 const all = document.querySelector('.all')
-const mainContent = document.querySelector('.main-content')
+const sideBar = document.querySelector('.sidebar')
 const completed = document.querySelector('.completed')
 const project = document.querySelector('.project')
 
@@ -209,15 +210,21 @@ const getFromStorage = () => {
 getFromStorage();
 
 all.addEventListener('click', () => {
-    mainContent.innerHTML = ''
-    mainContent.appendChild(mainContainer)
+    updateTodo()
+    addTodo.style.display = 'block'
+
 })
 
 project.addEventListener('click', () => {
-    mainContent.innerHTML = ''
-    mainContent.style.padding = '20px'
+const head = document.querySelector('.head')
+
+    mainContainer.innerHTML = ''
+    // mainContent.style.padding = '20px'
     const lists = showProjects()
-    mainContent.appendChild(lists)
+    head.textContent = 'All Projects'
+    head.style.textAlign = 'center'
+    mainContainer.appendChild(lists)
+    addTodo.style.display = 'none'
 })
 const showProjects = () => {
     const lists = document.createElement('ul');
@@ -230,6 +237,107 @@ const showProjects = () => {
 };
 
 completed.addEventListener('click', () => {
-    mainContent.innerHTML = ''
-    
+const head = document.querySelector('.head')
+    mainContainer.innerHTML = ''
+    addTodo.style.display = 'none'
+    head.textContent = 'Completed Projects'
+    const getCompleted = getTodo().filter((todo) => todo.complete === true)
+    getCompleted.forEach(completedTodo => {
+        
+        const section = document.createElement('div');
+        const topDiv = document.createElement('div')
+        const bottomDiv = document.createElement('div')
+        const dateAndPrio = document.createElement('div')
+        const title = document.createElement('h3');
+        const line = document.createElement('hr')
+        const description = document.createElement('p');
+        const date = document.createElement('p');
+        const priority = document.createElement('p');
+        const project = document.createElement('p')
+        const rule = document.createElement('hr')
+        const image = new Image()
+
+        image.src = deleteIcon;
+        image.width = 20
+
+        section.classList.add('section');
+        date.classList.add('date')
+        title.textContent = completedTodo.title
+        description.textContent = completedTodo.desc
+        date.textContent = completedTodo.dueDate
+        project.textContent = completedTodo.projectCat
+        priority.style.width = '16px'
+        priority.style.height = '16px'
+        priority.style.borderRadius = '50%'
+        title.textContent = completedTodo.title
+
+        topDiv.appendChild(title)
+        topDiv.appendChild(image)
+        bottomDiv.appendChild(description)
+        dateAndPrio.appendChild(date)
+        dateAndPrio.appendChild(project)
+        dateAndPrio.appendChild(priority)
+        section.appendChild(topDiv)
+        section.appendChild(line)
+        section.appendChild(bottomDiv)
+        section.appendChild(dateAndPrio)
+        section.appendChild(rule)
+
+        switch (completedTodo.priority) {
+            case 'highest':
+                priority.style.backgroundColor = 'red'
+                date.style.borderColor = "red"
+                date.style.color = "red"
+                break;
+            case 'high':
+                priority.style.backgroundColor = 'orange'
+                date.style.borderColor = "orange"
+                date.style.color = "orange"
+                break;
+            case 'normal':
+                priority.style.backgroundColor = 'green'
+                date.style.borderColor = "green"
+                date.style.color = "green"
+                break;
+            case 'low':
+                priority.style.backgroundColor = 'blue'
+                date.style.borderColor = "blue"
+                date.style.color = "blue"
+                break;
+            case 'lowest':
+                priority.style.backgroundColor = 'lightblue'
+                date.style.borderColor = "green"
+                date.style.color = "green"
+            default:
+                break;
+        }
+        if (completedTodo.complete === true) {
+            title.classList.add('complete');
+        }
+        
+        mainContainer.appendChild(section)
+    })
+})
+
+const nav = document.querySelectorAll('.nav')
+
+nav.forEach(navs => {
+    navs.addEventListener('click', () => {
+        
+        nav.forEach(navs => {
+            navs.classList.remove('active')
+        })
+        navs.classList.add('active')
+    })
+})
+
+const menu = document.querySelector('.menu')
+menu.addEventListener('click', () => {
+    sideBar.classList.add('show-side')
+})
+
+const exit = document.querySelector('.exit')
+
+exit.addEventListener('click', () => {
+    sideBar.classList.remove('show-side')
 })

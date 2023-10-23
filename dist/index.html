@@ -11,66 +11,86 @@
 
     <div class="container">
         <header>
-            <h1>ToDO List</h1>
+            <div class="menu">
+                Menu
+            </div>
+            <div class="round first">
+                <p class="rem"></p>
+                <p class="rem"></p>
+                <p class="rem"></p>
+                <p class="rem"></p>
+            </div>
+            <div class="title"><h1>Freed To-Do</h1></div>
+            <div class="round">
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
         </header>
         <main>
             <div class="top-bar">
-                <div class="all">All</div>
-                <div class="project">projects</div>
-                <div class="completed">completed</div>
+                <div class="all nav active">All</div>
+                <div class="project nav">projects</div>
+                <div class="completed nav">completed</div>
             </div>
-            <div class="main-content">
-                <div class="content">
-                    <div class="heading">
-
-                        <dialog id="todo-dialog">
-                            <form class="former">
-                                <fieldset>
-                                    <label for="title">
-                                        <input type="text" name="title" id="title" placeholder="Task name" minlength="2" required>
+            <div class="content">
+                <div class="heading">
+                    <dialog id="todo-dialog">
+                        <form class="former">
+                            <fieldset>
+                                <label for="title">
+                                    <input type="text" name="title" id="title" placeholder="Task name" minlength="2"
+                                        required>
+                                </label>
+                                <textarea name="description" id="description" cols="30" rows="1"
+                                    placeholder="Description" required minlength="2"></textarea>
+                                <div class="lower-form">
+                                    <label for="priority">
+                                        <select name="priority" id="priority" required>
+                                            <option value="" disabled selected>Select Priority</option>
+                                            <option value="highest">Highest</option>
+                                            <option value="high">High</option>
+                                            <option value="normal">Normal</option>
+                                            <option value="low">Low</option>
+                                            <option value="lowest">Lowest</option>
+                                        </select>
                                     </label>
-                                    <textarea name="description" id="description" cols="30" rows="1"
-                                        placeholder="Description" required minlength="2"></textarea>
-                                    <div class="lower-form">
-                                        <label for="priority">
-                                            <select name="priority" id="priority" required>
-                                                <option value="" disabled selected>Select Priority</option>
-                                                <option value="highest">Highest</option>
-                                                <option value="high">High</option>
-                                                <option value="normal">Normal</option>
-                                                <option value="low">Low</option>
-                                                <option value="lowest">Lowest</option>
-                                            </select>
-                                        </label>
-                                        <label for="project">
-                                            <select name="priority" id="project" required></select>
-                                        </label>
+                                    <label for="project">
+                                        <select name="priority" id="project" required></select>
+                                    </label>
+                                </div>
+                                <hr>
+                                <div class="submit">
+                                    <label for="date">
+                                        <input type="date" name="date" id="date" required value="2020-01-01">
+                                    </label>
+                                    <div class="cancel">
+                                        <button type="button" id="cancel">Cancel</button>
+                                        <button type="submit" id="submit">Add task</button>
                                     </div>
-                                    <hr>
-                                    <div class="submit">
-                                        <label for="date">
-                                            <input type="date" name="date" id="date" required value="2020-01-01">
-                                        </label>
-                                        <div class="cancel">
-                                            <button type="button" id="cancel">Cancel</button>
-                                            <button type="submit" id="submit">Add task</button>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </dialog>
-                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </dialog>
                 </div>
+            </div>
+            <div id="main-cont">
+                <h2 class="head"></h2>
                 <div class="todo-container"></div>
                 <div class="add-todo">
                     <button>+ New Task</button>
                 </div>
             </div>
+
         </main>
         <div class="sidebar">
             <div class="side-top">
-                <img src="" alt="todo logo" id="todo-logo" width="50">
-                <h2>Todos</h2>
+                <div class="logo">
+                    <img src="" alt="todo logo" id="todo-logo" width="50">
+                    <h2>Todos</h2>
+                </div>
+                <h3 class="exit">X</h3>
             </div>
             <div class="todos">
                 <div class="top">

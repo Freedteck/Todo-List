@@ -1,4 +1,6 @@
-* {
+*,
+*::after,
+*::before {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -26,14 +28,35 @@ button {
     grid-template-columns: 1fr 3fr;
     grid-template-rows: 80px 4fr 80px;
     text-align: center;
+    position: relative;
 }
 
 header {
+    position: relative;
     background-color: #DC4C3E;
     grid-row: 1;
     display: flex;
+    justify-content: space-between;
+    padding: 0 2em;
     align-items: center;
     color: white;
+}
+
+header .title h1 {
+    color: white;
+}
+
+header .round {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+header .round p {
+    background-color: orange;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
 }
 
 main {
@@ -44,28 +67,30 @@ main {
 
 main .todo-container {
     display: grid;
-    margin-top: 2.3em;
-    gap: 30px;
+    margin-top: .7em;
+    gap: 40px;
 }
 
-main .add-todo {
-    margin: 5px 20px;
+#main-cont {
+    padding: 1em 2em;
 }
 
 .add-todo button {
+    margin-top: 10px;
     padding: 5px 15px;
 }
 
 .section {
-    padding: 0 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     border-radius: 15px;
 }
+
 .section:hover {
     cursor: pointer;
 }
+
 .section div {
     display: flex;
     justify-content: space-between;
@@ -75,16 +100,16 @@ main .add-todo {
 
 .sidebar {
     background-color: #e1dede;
+    display: grid;
     grid-column: 1;
     grid-row: 1 / 4;
     padding: 20px;
-    display: grid;
     align-content: flex-start;
     gap: 30px;
     grid-template-rows: 100px, repeat(2, 50%);
 }
 
-.sidebar > div {
+.sidebar>div {
     background-color: rgb(240, 240, 240);
     text-align: start;
     border-radius: 15px;
@@ -115,16 +140,24 @@ main .add-todo {
     font-size: .8rem;
 }
 
-.todos .sideBar-container, .projects .sideBar-container, .top {
+.todos .sideBar-container,
+.projects .sideBar-container,
+.top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px;
 }
+
 .sideBar-container:hover {
     background-color: white;
     cursor: pointer;
 }
+
+.top:hover {
+    cursor: pointer;
+}
+
 #todo-dialog {
     margin: 10px auto;
     border: none;
@@ -133,6 +166,7 @@ main .add-todo {
     border-radius: 15px;
     box-shadow: 0 0 3px gray;
 }
+
 fieldset {
     display: flex;
     flex-direction: column;
@@ -141,7 +175,8 @@ fieldset {
 }
 
 
-input, textarea {
+input,
+textarea {
     display: block;
     width: 100%;
     border: none;
@@ -153,10 +188,16 @@ input, textarea {
 input[name="title"] {
     font-weight: 700;
 }
-input:hover, input:focus, textarea:hover, textarea:focus {
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
     border-bottom: 1px solid black;
 }
-select, .date {
+
+select,
+.date {
     outline: none;
     padding: 5px 10px;
     border-radius: 10px;
@@ -166,15 +207,18 @@ select, .date {
 input:invalid:focus {
     border-bottom: 1px solid red;
 }
+
 select:invalid:focus {
     border: 1px solid red;
 }
+
 .lower-form {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
 }
+
 .sideBar-container div {
     display: flex;
     justify-content: flex-end;
@@ -194,17 +238,21 @@ select:invalid:focus {
     align-items: center;
     gap: 10px;
 }
-#submit, #cancel {
+
+#submit,
+#cancel {
     padding: 7px 15px;
     border: none;
     border-radius: 10px;
     font-weight: 700;
 }
+
 #submit {
     background-color: #DC4C3E;
     color: white;
-    
+
 }
+
 #cancel {
     background-color: #e1dede;
 }
@@ -224,7 +272,7 @@ button:hover {
     box-shadow: none;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
     font-size: 1.3rem;
 }
 
@@ -232,5 +280,96 @@ button:hover {
     background-color: #f37165;
     display: flex;
     justify-content: space-between;
-    padding: 10px 3em;
+    align-items: center;
+    font-size: 1.3rem;
+    padding: 8px 2em;
+}
+
+.nav:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: rgba(255, 255, 255, .5);
+}
+
+.sidebar h3 {
+    text-align: right;
+    font-size: 1.4rem;
+    display: none;
+}
+
+.active {
+    background-color: white;
+    padding: 0 1em;
+}
+
+.menu {
+    display: none;
+}
+
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 664px) {
+    * {
+        font-size: .9rem;
+    }
+
+    header {
+        /* grid-row: 1 / 3; */
+        grid-column: 1 / 3;
+        font-size: initial;
+    }
+
+    header .title h1 {
+        font-size: 1.5rem;
+    }
+
+    header > .first {
+        display: none;
+    }
+
+    main {
+        grid-column: 1 / 3;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        background-color: #f37165;
+        border-radius: 10px;
+        padding: 5px 10px;
+        color: white;
+    }
+    .menu:hover {
+        cursor: pointer;
+        opacity: .8;
+    }
+.sidebar .side-top .logo h2 {
+    font-size: 1.3rem;
+}
+    .show-side {
+        display: grid;
+        position: absolute;
+        height: 100%;
+        width: 50%;
+    }
+
+    .sidebar h3 {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .exit:hover {
+        background-color: #f37165;
+        padding: 3px 7px;
+        cursor: pointer;
+        opacity: .8;
+        border-radius: 10px;
+    }
 }

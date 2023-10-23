@@ -18,6 +18,7 @@ export default function addToMain(mainContainer) {
         const priority = document.createElement('p');
         const project = document.createElement('p')
         const rule = document.createElement('hr')
+        const head = document.querySelector('.head')
         const image = new Image()
         const read = new Image()
 
@@ -32,13 +33,15 @@ export default function addToMain(mainContainer) {
         section.classList.add('section');
         date.classList.add('date')
         title.textContent = todo.title
+        head.textContent = 'All Todos'
+        head.style.textAlign = 'center'
         description.textContent = todo.desc
         date.textContent = todo.dueDate
         project.textContent = todo.projectCat
         priority.style.width = '16px'
         priority.style.height = '16px'
         priority.style.borderRadius = '50%'
-        date.textContent = todo.dueDate
+        // date.textContent = todo.dueDate
 
         switch (todo.priority) {
             case 'highest':
@@ -81,6 +84,7 @@ export default function addToMain(mainContainer) {
         section.appendChild(bottomDiv)
         section.appendChild(dateAndPrio)
         section.appendChild(rule)
+        // mainContainer.appendChild(head)
         mainContainer.appendChild(section)
 
         image.addEventListener('click', () => {
