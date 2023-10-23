@@ -29,7 +29,8 @@ export default function addToMain(mainContainer) {
 
         image.style.display = 'none'
         read.style.display = 'none'
-
+        read.classList.add('show')
+        image.classList.add('show')
         section.classList.add('section');
         date.classList.add('date')
         title.textContent = todo.title

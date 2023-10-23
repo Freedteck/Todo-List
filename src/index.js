@@ -1,7 +1,7 @@
 import './style.css'
 import addToMain from './addToMain';
 import addToSide from './addToSide';
-import { createTodo, getTodo } from "./todo";
+import { createTodo, getTodo, deleteTodo } from "./todo";
 import { getProject, addProject } from './project';
 import addToProject from './addToProject';
 import calendar from './calendar-check.svg'
@@ -128,6 +128,7 @@ plusProject.addEventListener('click', () => {
 
 })
 
+plusProject.classList.add('show')
 projectTitle.addEventListener('mouseover', () => {
     plusProject.style.display = 'block'
 })
@@ -216,7 +217,7 @@ all.addEventListener('click', () => {
 })
 
 project.addEventListener('click', () => {
-const head = document.querySelector('.head')
+    const head = document.querySelector('.head')
 
     mainContainer.innerHTML = ''
     // mainContent.style.padding = '20px'
@@ -237,13 +238,13 @@ const showProjects = () => {
 };
 
 completed.addEventListener('click', () => {
-const head = document.querySelector('.head')
+    const head = document.querySelector('.head')
     mainContainer.innerHTML = ''
     addTodo.style.display = 'none'
     head.textContent = 'Completed Projects'
     const getCompleted = getTodo().filter((todo) => todo.complete === true)
-    getCompleted.forEach(completedTodo => {
-        
+    getCompleted.forEach((completedTodo, index) => {
+
         const section = document.createElement('div');
         const topDiv = document.createElement('div')
         const bottomDiv = document.createElement('div')
@@ -314,8 +315,15 @@ const head = document.querySelector('.head')
         if (completedTodo.complete === true) {
             title.classList.add('complete');
         }
-        
+
         mainContainer.appendChild(section)
+
+        image.addEventListener('click', () => {
+            deleteTodo(index)
+            removeTodoFromStorage()
+            saveToStorage()
+            updateApp()
+        })
     })
 })
 
@@ -323,7 +331,7 @@ const nav = document.querySelectorAll('.nav')
 
 nav.forEach(navs => {
     navs.addEventListener('click', () => {
-        
+
         nav.forEach(navs => {
             navs.classList.remove('active')
         })

@@ -12,6 +12,8 @@ export default function addToSide(sideBarTodo) {
         const image = new Image()
         const read = new Image()
 
+        image.classList.add('show')
+        read.classList.add('show')
         sideContainer.classList.add('sideBar-container')
         image.src = deleteIcon
         read.src = check

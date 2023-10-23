@@ -46,6 +46,9 @@ export default function addToProject(project, projectTodo, index) {
     sideContainer.addEventListener('mouseout', () => {
         image.style.display = 'none'
     })
+
+    image.classList.add('show')
+
 }
 
 function updateCount(project, getTodo) {

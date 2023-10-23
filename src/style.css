@@ -291,7 +291,7 @@ button:hover {
     background-color: rgba(255, 255, 255, .5);
 }
 
-.sidebar h3 {
+.sidebar .exit {
     text-align: right;
     font-size: 1.4rem;
     display: none;
@@ -318,7 +318,6 @@ button:hover {
     }
 
     header {
-        /* grid-row: 1 / 3; */
         grid-column: 1 / 3;
         font-size: initial;
     }
@@ -327,7 +326,11 @@ button:hover {
         font-size: 1.5rem;
     }
 
-    header > .first {
+    .show {
+        display: block;
+    }
+
+    header>.first {
         display: none;
     }
 
@@ -346,13 +349,16 @@ button:hover {
         padding: 5px 10px;
         color: white;
     }
+
     .menu:hover {
         cursor: pointer;
         opacity: .8;
     }
-.sidebar .side-top .logo h2 {
-    font-size: 1.3rem;
-}
+
+    .sidebar .side-top .logo h2 {
+        font-size: 1.3rem;
+    }
+
     .show-side {
         display: grid;
         position: absolute;
@@ -360,7 +366,7 @@ button:hover {
         width: 50%;
     }
 
-    .sidebar h3 {
+    .sidebar .exit {
         display: flex;
         justify-content: flex-end;
     }
