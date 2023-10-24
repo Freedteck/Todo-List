@@ -22,7 +22,6 @@ export default function addToSide(sideBarTodo) {
         list.textContent = todo.title
         div.appendChild(image)
         div.appendChild(read)
-        div.style.display = 'none'
         sideContainer.appendChild(list)
         sideContainer.appendChild(div)
         sideBarTodo.appendChild(sideContainer)
@@ -46,10 +45,12 @@ export default function addToSide(sideBarTodo) {
         })
 
         sideContainer.addEventListener('mouseover', () => {
-            div.style.display = 'flex'
+            image.style.display = 'flex'
+            read.style.display = 'flex'
         })
         sideContainer.addEventListener('mouseout', () => {
-            div.style.display = 'none'
+            image.style.display = 'none'
+            read.style.display = 'none'
         })
 
     })

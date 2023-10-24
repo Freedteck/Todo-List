@@ -14,8 +14,6 @@ export default function addToProject(project, projectTodo, index) {
     image.src = deleteIcon
     image.width = 20
 
-    image.style.display = 'none'
-
     let counter = updateCount(project, getTodo)
     list.textContent = project
     count.textContent = counter

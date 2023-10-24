@@ -17,8 +17,8 @@ export default function addToMain(mainContainer) {
         const date = document.createElement('p');
         const priority = document.createElement('p');
         const project = document.createElement('p')
-        const rule = document.createElement('hr')
-        const head = document.querySelector('.head')
+        // const rule = document.createElement('hr')
+        const bottomSection = document.createElement('section')
         const image = new Image()
         const read = new Image()
 
@@ -27,15 +27,12 @@ export default function addToMain(mainContainer) {
         image.width = 20
         read.width = 20
 
-        image.style.display = 'none'
-        read.style.display = 'none'
         read.classList.add('show')
         image.classList.add('show')
         section.classList.add('section');
         date.classList.add('date')
         title.textContent = todo.title
-        head.textContent = 'All Todos'
-        head.style.textAlign = 'center'
+
         description.textContent = todo.desc
         date.textContent = todo.dueDate
         project.textContent = todo.projectCat
@@ -82,9 +79,12 @@ export default function addToMain(mainContainer) {
         dateAndPrio.appendChild(priority)
         section.appendChild(topDiv)
         section.appendChild(line)
-        section.appendChild(bottomDiv)
-        section.appendChild(dateAndPrio)
-        section.appendChild(rule)
+        bottomSection.appendChild(bottomDiv)
+        bottomSection.appendChild(dateAndPrio)
+        // bottomSection.appendChild(bottomDiv)
+        section.appendChild(bottomSection)
+        // section.appendChild(dateAndPrio)
+        // section.appendChild(rule)
         // mainContainer.appendChild(head)
         mainContainer.appendChild(section)
 

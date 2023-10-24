@@ -2,11 +2,13 @@ import './style.css'
 import addToMain from './addToMain';
 import addToSide from './addToSide';
 import { createTodo, getTodo, deleteTodo } from "./todo";
-import { getProject, addProject } from './project';
+import { getProject, addProject, removeProject } from './project';
 import addToProject from './addToProject';
 import calendar from './calendar-check.svg'
 import deleteIcon from './delete.svg'
 import plusIcon from './plus.svg'
+import down from './down.svg'
+import up from './up.svg'
 import { format } from 'date-fns'
 
 // Dom Variables
@@ -23,6 +25,10 @@ const all = document.querySelector('.all')
 const sideBar = document.querySelector('.sidebar')
 const completed = document.querySelector('.completed')
 const project = document.querySelector('.project')
+const head = document.querySelector('.head')
+
+head.textContent = 'All Todos'
+head.style.textAlign = 'center'
 
 const userTitle = document.getElementById('title')
 const userDesc = document.getElementById('description')
@@ -47,7 +53,7 @@ export const updateApp = () => {
 }
 // Logic to update todo
 const updateTodo = () => {
-    addToMain(mainContainer, choosenPriority)
+    addToMain(mainContainer)
     addToSide(sideBarTodo)
 }
 
@@ -211,37 +217,100 @@ const getFromStorage = () => {
 getFromStorage();
 
 all.addEventListener('click', () => {
+    head.textContent = 'All Todos'
     updateTodo()
     addTodo.style.display = 'block'
 
 })
 
 project.addEventListener('click', () => {
-    const head = document.querySelector('.head')
 
     mainContainer.innerHTML = ''
-    // mainContent.style.padding = '20px'
-    const lists = showProjects()
+    const section = showProjects()
     head.textContent = 'All Projects'
-    head.style.textAlign = 'center'
-    mainContainer.appendChild(lists)
+
+    mainContainer.appendChild(section)
+    // mainContainer.appendChild(line)
     addTodo.style.display = 'none'
 })
 const showProjects = () => {
-    const lists = document.createElement('ul');
+    const section = document.createElement('div');
+    section.classList.add('section');
+
     getProject().forEach((project, index) => {
-        const li = document.createElement('li');
-        li.textContent = project;
-        lists.appendChild(li); // Append the list item to the list
+        const title = document.createElement('h3');
+        const topDiv = document.createElement('div')
+        const sideDiv = document.createElement('div')
+        const rule = document.createElement('hr')
+        const image = new Image()
+        const downArrow = new Image()
+        const bottomDiv = document.createElement('section')
+        image.src = deleteIcon;
+        downArrow.src = down;
+        image.width = 20
+        downArrow.width = 20
+
+        title.textContent = project;
+
+        // sideDiv.style.display = 'none'
+        downArrow.classList.add('show')
+        image.classList.add('show')
+        sideDiv.appendChild(image)
+        sideDiv.appendChild(downArrow)
+        topDiv.appendChild(title)
+        topDiv.appendChild(sideDiv)
+        section.appendChild(topDiv); // Append the list item to the list
+        section.appendChild(rule)
+        section.appendChild(bottomDiv); // Append the list item to the list
+        bottomDiv.classList.add('drop')
+        getTodo().forEach((todo, index) => {
+            const ty = document.createElement('p')
+            if (todo.projectCat === project) {
+                ty.textContent = todo.title
+                bottomDiv.appendChild(ty)
+            }
+        })
+
+        image.addEventListener('click', () => {
+            removeProject(index)
+            const todos = getTodo();
+            for (let i = todos.length - 1; i >= 0; i--) {
+                if (todos[i].projectCat === project) {
+                    deleteTodo(i);
+                }
+            }
+            
+            updateP()
+            removeProjectFromStorage()
+            saveToStorage()
+            updateApp()
+        })
+
+        downArrow.addEventListener('click', () => {
+            bottomDiv.classList.toggle('drop')
+            if (bottomDiv.classList.length === 0) {
+                downArrow.src = up
+            } else {
+                downArrow.src = down
+            }
+        })
+
+        topDiv.addEventListener('mouseover', () => {
+            image.style.display = 'block'
+            downArrow.style.display = 'block'
+        })
+        topDiv.addEventListener('mouseout', () => {
+            image.style.display = 'none'
+            downArrow.style.display = 'none'
+        })
     });
-    return lists;
+    return section;
 };
 
 completed.addEventListener('click', () => {
-    const head = document.querySelector('.head')
     mainContainer.innerHTML = ''
     addTodo.style.display = 'none'
-    head.textContent = 'Completed Projects'
+    head.textContent = 'Completed Todos'
     const getCompleted = getTodo().filter((todo) => todo.complete === true)
     getCompleted.forEach((completedTodo, index) => {
 
@@ -256,6 +325,8 @@ completed.addEventListener('click', () => {
         const priority = document.createElement('p');
         const project = document.createElement('p')
         const rule = document.createElement('hr')
+        const bottomSection = document.createElement('section')
+
         const image = new Image()
 
         image.src = deleteIcon;
@@ -280,9 +351,12 @@ completed.addEventListener('click', () => {
         dateAndPrio.appendChild(priority)
         section.appendChild(topDiv)
         section.appendChild(line)
-        section.appendChild(bottomDiv)
-        section.appendChild(dateAndPrio)
-        section.appendChild(rule)
+        bottomSection.appendChild(bottomDiv)
+        bottomSection.appendChild(dateAndPrio)
+        // bottomSection.appendChild(bottomDiv)
+        section.appendChild(bottomSection)
+        // section.appendChild(dateAndPrio)
+        // section.appendChild(rule)
 
         switch (completedTodo.priority) {
             case 'highest':
