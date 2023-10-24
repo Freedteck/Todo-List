@@ -1,15 +1,24 @@
 import check from './check.svg'
 import deleteIcon from './delete.svg'
+import pencil from './pencil-outline.svg'
 import { deleteTodo, completeTodo, getTodo } from "./todo";
 import { updateApp, removeTodoFromStorage, saveToStorage } from '.';
 
 export default function addToMain(mainContainer) {
+    const dialog = document.getElementById('todo-dialog')
+    const userTitle = document.getElementById('title')
+    const userDesc = document.getElementById('description')
+    const userPrior = document.getElementById('priority')
+    const userProject = document.getElementById('project')
+    const userDate = document.getElementById('date')
+
     mainContainer.innerHTML = ''
     // Dynamic Dom Variables
     getTodo().forEach((todo, index) => {
         const section = document.createElement('div');
         const topDiv = document.createElement('div')
         const bottomDiv = document.createElement('div')
+        const sideDiv = document.createElement('div')
         const dateAndPrio = document.createElement('div')
         const title = document.createElement('h3');
         const line = document.createElement('hr')
@@ -21,14 +30,19 @@ export default function addToMain(mainContainer) {
         const bottomSection = document.createElement('section')
         const image = new Image()
         const read = new Image()
+        const edit = new Image()
+
 
         image.src = deleteIcon;
         read.src = check
+        edit.src = pencil
         image.width = 20
         read.width = 20
+        edit.width = 20
 
         read.classList.add('show')
         image.classList.add('show')
+        edit.classList.add('show')
         section.classList.add('section');
         date.classList.add('date')
         title.textContent = todo.title
@@ -71,7 +85,9 @@ export default function addToMain(mainContainer) {
         }
 
         topDiv.appendChild(title)
-        topDiv.appendChild(image)
+        sideDiv.appendChild(edit)
+        sideDiv.appendChild(image)
+        topDiv.appendChild(sideDiv)
         bottomDiv.appendChild(description)
         bottomDiv.appendChild(read)
         dateAndPrio.appendChild(date)
@@ -111,8 +127,18 @@ export default function addToMain(mainContainer) {
             saveToStorage()
         });
 
+        edit.addEventListener('click', () => {
+            userTitle.value = todo.title
+            userDate.value = todo.dueDate
+            userDesc.value = todo.desc
+            userPrior.value = todo.priority
+            userProject.text = todo.projectCat
+            dialog.show()
+        })
+
         section.addEventListener('mouseover', () => {
             image.style.display = 'block'
+            edit.style.display = 'block'
         })
         section.addEventListener('mouseover', () => {
             read.style.display = 'block'
@@ -120,6 +146,7 @@ export default function addToMain(mainContainer) {
 
         section.addEventListener('mouseout', () => {
             image.style.display = 'none'
+            edit.style.display = 'none'
         })
         section.addEventListener('mouseout', () => {
             read.style.display = 'none'

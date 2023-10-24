@@ -77,6 +77,9 @@ addTodo.addEventListener('click', () => {
     choosenProject = defaultProject
     userPrior.value = defaultPriority
     choosenPriority = defaultPriority
+    userTitle.value = ''
+    userDesc.value = ''
+    userDate.value = '2020-01-01'
 
 })
 
@@ -180,6 +183,7 @@ const getFromStorage = () => {
     let index = 0;
 
     // Retrieve to-do items and projects from localStorage
+
     while (true) {
         const todo = JSON.parse(localStorage.getItem(`todo_${index}`));
         const project = localStorage.getItem(`project_${index}`);

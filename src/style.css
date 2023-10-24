@@ -329,6 +329,10 @@ button:hover {
     display: none;
 }
 
+.section, .sidebar {
+    text-transform: capitalize;
+}
+
 @media (max-width: 664px) {
     * {
         font-size: .9rem;
