@@ -15,12 +15,14 @@
                 Menu
             </div>
             <div class="round first">
-                <p class="rem"></p>
-                <p class="rem"></p>
-                <p class="rem"></p>
-                <p class="rem"></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
             </div>
-            <div class="title"><h1>Freed To-Do</h1></div>
+            <div class="title">
+                <h1>Freed To-Do</h1>
+            </div>
             <div class="round">
                 <p></p>
                 <p></p>
@@ -43,45 +45,8 @@
                                     <input type="text" name="title" id="title" placeholder="Task name" minlength="2"
                                         required>
                                 </label>
-                                <textarea name="description" id="description" cols="30" rows="1"
-                                    placeholder="Description" required minlength="2"></textarea>
-                                <div class="lower-form">
-                                    <label for="priority">
-                                        <select name="priority" id="priority" required>
-                                            <option value="" disabled selected>Select Priority</option>
-                                            <option value="highest">Highest</option>
-                                            <option value="high">High</option>
-                                            <option value="normal">Normal</option>
-                                            <option value="low">Low</option>
-                                            <option value="lowest">Lowest</option>
-                                        </select>
-                                    </label>
-                                    <label for="project">
-                                        <select name="priority" id="project" required></select>
-                                    </label>
-                                </div>
-                                <hr>
-                                <div class="submit">
-                                    <label for="date">
-                                        <input type="date" name="date" id="date" required value="2020-01-01">
-                                    </label>
-                                    <div class="cancel">
-                                        <button type="button" id="cancel">Cancel</button>
-                                        <button type="submit" id="submit">Add task</button>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </dialog>
-                    <dialog id="edit-dialog">
-                        <form id="forms">
-                            <fieldset>
-                                <label for="title">
-                                    <input type="text" name="title" id="title" placeholder="Task name" minlength="2"
-                                        required>
-                                </label>
-                                <textarea name="description" id="description" cols="30" rows="1"
-                                    placeholder="Description" required minlength="2"></textarea>
+                                <input name="description" id="description" placeholder="Description" required
+                                    minlength="2"></input>
                                 <div class="lower-form">
                                     <label for="priority">
                                         <select name="priority" id="priority" required>
@@ -124,7 +89,7 @@
         <div class="sidebar">
             <div class="side-top">
                 <div class="logo">
-                    <img src="" alt="todo logo" id="todo-logo" width="50">
+                    <img src="" alt="todo logo" id="todo-logo" width="45">
                     <h2>Todos</h2>
                 </div>
                 <h3 class="exit">X</h3>
@@ -147,4 +112,5 @@
     </div>
     <script src="main.js"></script>
 </body>
+
 </html>
