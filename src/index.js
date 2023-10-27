@@ -73,6 +73,7 @@ const defaultProject = userProject.value
 
 addTodo.addEventListener('click', () => {
     dialog.show()
+    addTodo.style.display = 'none'
     userProject.value = defaultProject
     choosenProject = defaultProject
     userPrior.value = defaultPriority
@@ -119,10 +120,12 @@ document.querySelector(".former").addEventListener("submit", (e) => {
         updateApp()
         dialog.close()
     }
+    addTodo.style.display = 'block'
 })
 
 cancel.addEventListener('click', () => {
     dialog.close()
+    addTodo.style.display = 'block'
 })
 
 plusProject.addEventListener('click', () => {
