@@ -1,9 +1,10 @@
 import check from './check.svg'
 import deleteIcon from './delete.svg'
 import pencil from './pencil-outline.svg'
-import { deleteTodo, completeTodo, getTodo } from "./todo";
+import { deleteTodo, completeTodo, getTodo, editTodo } from "./todo";
 import { updateApp, removeTodoFromStorage, saveToStorage } from '.';
 
+export let update = false
 export default function addToMain(mainContainer) {
     const dialog = document.getElementById('todo-dialog')
     const userTitle = document.getElementById('title')
@@ -43,6 +44,7 @@ export default function addToMain(mainContainer) {
         read.classList.add('show')
         image.classList.add('show')
         edit.classList.add('show')
+        edit.classList.add('edit')
         section.classList.add('section');
         date.classList.add('date')
         title.textContent = todo.title
@@ -128,14 +130,61 @@ export default function addToMain(mainContainer) {
         });
 
         edit.addEventListener('click', () => {
-            userTitle.value = todo.title
-            userDate.value = todo.dueDate
-            userDesc.value = todo.desc
-            userPrior.value = todo.priority
-            userProject.text = todo.projectCat
-            dialog.show()
-        })
+            userTitle.value = todo.title;
+            userDate.value = todo.dueDate;
+            userDesc.value = todo.desc;
+            userPrior.value = todo.priority;
+            userProject.text = todo.projectCat;
+            dialog.show();
+            update = true;
+            console.log(index);
+    
+            const handleFormSubmit = (e) => {
+                e.preventDefault();
+    
+                const title = userTitle.value;
+                const desc = userDesc.value;
+                let projectCat = userProject.value;
+                const priority = userPrior.value;
+                const dueDate = userDate.value;
+                let isComplete = false;
+    
+                if (update === true) {
+                    console.log(index);
+                    editTodo(index, title, desc, dueDate, priority, projectCat, isComplete);
+                    saveToStorage();
+                    updateApp();
+                    update = false;
+                    dialog.close();
+                }
+            };
+    
+            document.querySelector(".former").addEventListener("submit", handleFormSubmit);
+        });
+        // const currentTodoIndex = index;
 
+       
+
+        // document.querySelector(".former").addEventListener("submit", handleForm
+            // e.preventDefault()
+
+            // const title = userTitle.value
+            // const desc = userDesc.value
+            // let projectCat = userProject.value
+            // const priority = userPrior.value
+            // const dueDate = userDate.value
+            // let isComplete = false
+
+            // // if (update === true) {
+            //     console.log(index);
+            //     editTodo(index, title, desc, dueDate, priority, projectCat, isComplete);
+            //     saveToStorage()
+            //     updateApp()
+            //     update = false
+            //     dialog.close()
+            // // }
+
+        // )
         section.addEventListener('mouseover', () => {
             image.style.display = 'block'
             edit.style.display = 'block'
@@ -153,3 +202,5 @@ export default function addToMain(mainContainer) {
         })
     })
 }
+
+// export { edit }

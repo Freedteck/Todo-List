@@ -73,6 +73,43 @@
                             </fieldset>
                         </form>
                     </dialog>
+                    <dialog id="edit-dialog">
+                        <form id="forms">
+                            <fieldset>
+                                <label for="title">
+                                    <input type="text" name="title" id="title" placeholder="Task name" minlength="2"
+                                        required>
+                                </label>
+                                <textarea name="description" id="description" cols="30" rows="1"
+                                    placeholder="Description" required minlength="2"></textarea>
+                                <div class="lower-form">
+                                    <label for="priority">
+                                        <select name="priority" id="priority" required>
+                                            <option value="" disabled selected>Select Priority</option>
+                                            <option value="highest">Highest</option>
+                                            <option value="high">High</option>
+                                            <option value="normal">Normal</option>
+                                            <option value="low">Low</option>
+                                            <option value="lowest">Lowest</option>
+                                        </select>
+                                    </label>
+                                    <label for="project">
+                                        <select name="priority" id="project" required></select>
+                                    </label>
+                                </div>
+                                <hr>
+                                <div class="submit">
+                                    <label for="date">
+                                        <input type="date" name="date" id="date" required value="2020-01-01">
+                                    </label>
+                                    <div class="cancel">
+                                        <button type="button" id="cancel">Cancel</button>
+                                        <button type="submit" id="submit">Add task</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </dialog>
                 </div>
             </div>
             <div id="main-cont">

@@ -1,5 +1,6 @@
 import './style.css'
 import addToMain from './addToMain';
+import { update } from './addToMain';
 import addToSide from './addToSide';
 import { createTodo, getTodo, deleteTodo } from "./todo";
 import { getProject, addProject, removeProject } from './project';
@@ -103,6 +104,7 @@ export const updateP = () => {
 }
 
 updateP()
+
 document.querySelector(".former").addEventListener("submit", (e) => {
     e.preventDefault()
 
@@ -112,11 +114,16 @@ document.querySelector(".former").addEventListener("submit", (e) => {
     const priority = choosenPriority
     const dueDate = format(new Date(userDate.value), 'MMM do yyyy')
     let isComplete = false
+    // if (update) {
+    //     getTodo()
+    // }
+    if (update === false) {
+        createTodo(title, desc, dueDate, priority, projectCat, isComplete);
+        saveToStorage()
+        updateApp()
+        dialog.close()
+    }
 
-    createTodo(title, desc, dueDate, priority, projectCat, isComplete);
-    saveToStorage()
-    updateApp()
-    dialog.close()
 
 })
 
