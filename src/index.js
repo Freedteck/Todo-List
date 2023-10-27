@@ -43,7 +43,6 @@ const day = new Date()
 const year = day.getFullYear()
 const month = day.getMonth() + 1
 const date = day.getDate()
-
 const today = `${year}-${month}-${date}`
 
 userDate.setAttribute('min', today)
@@ -81,7 +80,6 @@ addTodo.addEventListener('click', () => {
     userTitle.value = ''
     userDesc.value = ''
     userDate.value = '2020-01-01'
-
 })
 
 userProject.addEventListener('change', () => {
@@ -114,17 +112,13 @@ document.querySelector(".former").addEventListener("submit", (e) => {
     const priority = choosenPriority
     const dueDate = format(new Date(userDate.value), 'MMM do yyyy')
     let isComplete = false
-    // if (update) {
-    //     getTodo()
-    // }
+
     if (update === false) {
         createTodo(title, desc, dueDate, priority, projectCat, isComplete);
         saveToStorage()
         updateApp()
         dialog.close()
     }
-
-
 })
 
 cancel.addEventListener('click', () => {
@@ -220,9 +214,6 @@ const getFromStorage = () => {
     })
     updateP()
     updateApp()
-
-    console.table(todoList);
-    console.table(projectList);
 };
 
 getFromStorage();
@@ -231,7 +222,6 @@ all.addEventListener('click', () => {
     head.textContent = 'All Todos'
     updateTodo()
     addTodo.style.display = 'block'
-
 })
 
 project.addEventListener('click', () => {
@@ -241,7 +231,6 @@ project.addEventListener('click', () => {
     head.textContent = 'All Projects'
 
     mainContainer.appendChild(section)
-    // mainContainer.appendChild(line)
     addTodo.style.display = 'none'
 })
 const showProjects = () => {
@@ -263,7 +252,6 @@ const showProjects = () => {
 
         title.textContent = project;
 
-        // sideDiv.style.display = 'none'
         downArrow.classList.add('show')
         image.classList.add('show')
         sideDiv.appendChild(image)
@@ -290,7 +278,7 @@ const showProjects = () => {
                     deleteTodo(i);
                 }
             }
-            
+
             updateP()
             removeProjectFromStorage()
             saveToStorage()
@@ -335,9 +323,7 @@ completed.addEventListener('click', () => {
         const date = document.createElement('p');
         const priority = document.createElement('p');
         const project = document.createElement('p')
-        const rule = document.createElement('hr')
         const bottomSection = document.createElement('section')
-
         const image = new Image()
 
         image.src = deleteIcon;
@@ -364,10 +350,7 @@ completed.addEventListener('click', () => {
         section.appendChild(line)
         bottomSection.appendChild(bottomDiv)
         bottomSection.appendChild(dateAndPrio)
-        // bottomSection.appendChild(bottomDiv)
         section.appendChild(bottomSection)
-        // section.appendChild(dateAndPrio)
-        // section.appendChild(rule)
 
         switch (completedTodo.priority) {
             case 'highest':
@@ -391,9 +374,9 @@ completed.addEventListener('click', () => {
                 date.style.color = "blue"
                 break;
             case 'lowest':
-                priority.style.backgroundColor = 'lightblue'
-                date.style.borderColor = "green"
-                date.style.color = "green"
+                priority.style.backgroundColor = '#3498db'
+                date.style.borderColor = "#3498db"
+                date.style.color = "#3498db"
             default:
                 break;
         }

@@ -6,7 +6,7 @@
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
-    color: black;
+    color: #333;
 }
 
 body,
@@ -15,11 +15,13 @@ html {
     background-color: rgb(250, 244, 244);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+h1, h2, h3 {
+    color: #3498db;
+}
 button {
     border-radius: 10px;
     background-color: white;
-    border: 1px solid green;
+    border: 1px solid #3498db;
 }
 
 .container {
@@ -33,13 +35,12 @@ button {
 
 header {
     position: relative;
-    background-color: #DC4C3E;
+    background-color: #3498db;
     grid-row: 1;
     display: flex;
     justify-content: space-between;
     padding: 0 2em;
     align-items: center;
-    color: white;
 }
 
 header .title h1 {
@@ -109,21 +110,22 @@ main .todo-container {
     margin-bottom: 20px;
 }
 .sidebar {
-    background-color: #e1dede;
+    background-color: #bdc3c7;
     display: grid;
     grid-column: 1;
     grid-row: 1 / 4;
-    padding: 20px;
+    padding: 10px;
     align-content: flex-start;
     gap: 30px;
     grid-template-rows: 100px, repeat(2, 50%);
 }
 
 .sidebar>div {
-    background-color: rgb(240, 240, 240);
+    background-color: #ffffff; /* White background for sidebar items */
     text-align: start;
     border-radius: 15px;
-    box-shadow: 0 1px 2px black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 }
 
 .sidebar ul {
@@ -138,16 +140,14 @@ main .todo-container {
     height: 100%;
     overflow-y: auto;
 }
+.sidebar .projects:hover,
+.sidebar .todos:hover {
+    background-color: #e0e0e0; /* Light gray background on hover */
+}
 
-.complete::after {
-    content: 'Completed';
-    background-color: teal;
-    color: white;
-    padding: 2px 7px;
-    border-radius: 15px;
-    margin-left: 15px;
-    font-weight: 500;
-    font-size: .8rem;
+.complete {
+    color: #bdc3c7;
+    text-decoration: line-through green double;
 }
 
 .todos .sideBar-container,
@@ -174,7 +174,7 @@ main .todo-container {
     width: 95%;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 0 3px gray;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 fieldset {
@@ -183,7 +183,6 @@ fieldset {
     gap: 10px;
     border: none;
 }
-
 
 input,
 textarea {
@@ -196,14 +195,12 @@ textarea {
 }
 
 input[name="title"] {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 input:hover,
-input:focus,
-textarea:hover,
-textarea:focus {
-    border-bottom: 1px solid black;
+input:focus {
+    border-bottom: 1px solid #3498db;
 }
 
 select,
@@ -258,7 +255,7 @@ select:invalid:focus {
 }
 
 #submit {
-    background-color: #DC4C3E;
+    background-color: #3498db;
     color: white;
 
 }
@@ -290,7 +287,7 @@ button:hover {
 }
 
 .top-bar {
-    background-color: #f37165;
+    background-color: #3498db;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -301,7 +298,8 @@ button:hover {
 .nav:hover {
     cursor: pointer;
     scale: 1.1;
-    background-color: rgba(255, 255, 255, .5);
+    padding: 3px .5em;
+    color: #ffffff;
 }
 
 .sidebar .exit {
@@ -311,8 +309,10 @@ button:hover {
 }
 
 .active {
-    background-color: white;
-    padding: 0 1em;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 3px .5em;
+    border-radius: 10px;
 }
 
 .menu {
@@ -324,7 +324,9 @@ button:hover {
     align-items: center;
     gap: 10px;
 }
-
+.logo h2, .head {
+    color: #333;
+}
 .show {
     display: none;
 }
@@ -365,7 +367,7 @@ button:hover {
 
     .menu {
         display: flex;
-        background-color: #f37165;
+        background-color: #48b0f5;
         border-radius: 10px;
         padding: 5px 10px;
         color: white;

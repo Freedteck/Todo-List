@@ -52,7 +52,5 @@ export default function addToSide(sideBarTodo) {
             image.style.display = 'none'
             read.style.display = 'none'
         })
-
     })
-
 }

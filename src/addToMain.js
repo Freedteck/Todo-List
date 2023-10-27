@@ -1,10 +1,15 @@
 import check from './check.svg'
 import deleteIcon from './delete.svg'
 import pencil from './pencil-outline.svg'
+import { format } from 'date-fns'
 import { deleteTodo, completeTodo, getTodo, editTodo } from "./todo";
 import { updateApp, removeTodoFromStorage, saveToStorage } from '.';
 
 export let update = false
+
+export const toggle = () => {
+    update = !update
+}
 export default function addToMain(mainContainer) {
     const dialog = document.getElementById('todo-dialog')
     const userTitle = document.getElementById('title')
@@ -27,7 +32,6 @@ export default function addToMain(mainContainer) {
         const date = document.createElement('p');
         const priority = document.createElement('p');
         const project = document.createElement('p')
-        // const rule = document.createElement('hr')
         const bottomSection = document.createElement('section')
         const image = new Image()
         const read = new Image()
@@ -55,7 +59,6 @@ export default function addToMain(mainContainer) {
         priority.style.width = '16px'
         priority.style.height = '16px'
         priority.style.borderRadius = '50%'
-        // date.textContent = todo.dueDate
 
         switch (todo.priority) {
             case 'highest':
@@ -79,9 +82,9 @@ export default function addToMain(mainContainer) {
                 date.style.color = "blue"
                 break;
             case 'lowest':
-                priority.style.backgroundColor = 'lightblue'
-                date.style.borderColor = "green"
-                date.style.color = "green"
+                priority.style.backgroundColor = '#3498db'
+                date.style.borderColor = "#3498db"
+                date.style.color = "#3498db"
             default:
                 break;
         }
@@ -99,11 +102,7 @@ export default function addToMain(mainContainer) {
         section.appendChild(line)
         bottomSection.appendChild(bottomDiv)
         bottomSection.appendChild(dateAndPrio)
-        // bottomSection.appendChild(bottomDiv)
         section.appendChild(bottomSection)
-        // section.appendChild(dateAndPrio)
-        // section.appendChild(rule)
-        // mainContainer.appendChild(head)
         mainContainer.appendChild(section)
 
         image.addEventListener('click', () => {
@@ -128,63 +127,38 @@ export default function addToMain(mainContainer) {
             }
             saveToStorage()
         });
-
+        let currentIndex = -1;
         edit.addEventListener('click', () => {
             userTitle.value = todo.title;
             userDate.value = todo.dueDate;
             userDesc.value = todo.desc;
             userPrior.value = todo.priority;
-            userProject.text = todo.projectCat;
+            userProject.value = todo.projectCat;
             dialog.show();
-            update = true;
-            console.log(index);
-    
-            const handleFormSubmit = (e) => {
-                e.preventDefault();
-    
-                const title = userTitle.value;
-                const desc = userDesc.value;
-                let projectCat = userProject.value;
-                const priority = userPrior.value;
-                const dueDate = userDate.value;
-                let isComplete = false;
-    
-                if (update === true) {
-                    console.log(index);
-                    editTodo(index, title, desc, dueDate, priority, projectCat, isComplete);
-                    saveToStorage();
-                    updateApp();
-                    update = false;
-                    dialog.close();
-                }
-            };
-    
-            document.querySelector(".former").addEventListener("submit", handleFormSubmit);
+            currentIndex = index; // Update the currentIndex
+            toggle()
         });
-        // const currentTodoIndex = index;
 
-       
+        document.querySelector(".former").addEventListener("submit", (e) => {
+            e.preventDefault();
 
-        // document.querySelector(".former").addEventListener("submit", handleForm
-            // e.preventDefault()
+            const title = userTitle.value;
+            const desc = userDesc.value;
+            const projectCat = userProject.value;
+            const priority = userPrior.value;
+            const dueDate = format(new Date(userDate.value), 'MMM do yyyy')
+            let isComplete = false;
 
-            // const title = userTitle.value
-            // const desc = userDesc.value
-            // let projectCat = userProject.value
-            // const priority = userPrior.value
-            // const dueDate = userDate.value
-            // let isComplete = false
+            if (currentIndex !== -1) { // Check if a valid index is set
+                editTodo(currentIndex, title, desc, dueDate, priority, projectCat, isComplete);
+                saveToStorage();
+                updateApp();
+                dialog.close();
+                currentIndex = -1; // Reset the currentIndex
+                toggle()
+            }
+        });
 
-            // // if (update === true) {
-            //     console.log(index);
-            //     editTodo(index, title, desc, dueDate, priority, projectCat, isComplete);
-            //     saveToStorage()
-            //     updateApp()
-            //     update = false
-            //     dialog.close()
-            // // }
-
-        // )
         section.addEventListener('mouseover', () => {
             image.style.display = 'block'
             edit.style.display = 'block'
@@ -202,5 +176,3 @@ export default function addToMain(mainContainer) {
         })
     })
 }
-
-// export { edit }
