@@ -176,9 +176,9 @@ export const removeTodoFromStorage = () => {
 export const removeProjectFromStorage = () => {
     const projectList = getProject()
 
-    // projectList.forEach((project, index) => {
-    //     localStorage.removeItem(`project_${index}`)
-    // })
+    projectList.forEach((project, index) => {
+        localStorage.removeItem(`project_${index}`)
+    })
 }
 
 const getFromStorage = () => {
