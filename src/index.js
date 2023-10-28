@@ -414,8 +414,8 @@ menu.addEventListener('click', () => {
     sideBar.classList.add('show-side')
 })
 
-const exit = document.querySelector('.exit')
+// const exit = document.querySelector('.exit')
 
-exit.addEventListener('click', () => {
-    sideBar.classList.remove('show-side')
-})
+// exit.addEventListener('click', () => {
+//     sideBar.classList.remove('show-side')
+// })
