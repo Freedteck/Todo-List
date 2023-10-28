@@ -414,8 +414,13 @@ menu.addEventListener('click', () => {
     sideBar.classList.add('show-side')
 })
 
-// const exit = document.querySelector('.exit')
+const exit = document.querySelector('.exit')
+exit.addEventListener('click', () => {
+    sideBar.classList.remove('show-side')
+})
 
-// exit.addEventListener('click', () => {
-//     sideBar.classList.remove('show-side')
-// })
+document.addEventListener('click', (e) => {
+    if (!sideBar.contains(e.target) && !menu.contains(e.target)) {
+        sideBar.classList.remove('show-side');
+    }
+});
