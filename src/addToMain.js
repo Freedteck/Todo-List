@@ -130,7 +130,7 @@ export default function addToMain(mainContainer) {
         let currentIndex = -1;
         edit.addEventListener('click', () => {
             userTitle.value = todo.title;
-            userDate.value = todo.dueDate;
+            userDate.value = '2020-01-01';
             userDesc.value = todo.desc;
             userPrior.value = todo.priority;
             userProject.value = todo.projectCat;
