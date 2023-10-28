@@ -159,6 +159,13 @@ export default function addToMain(mainContainer) {
             }
         });
 
+        document.getElementById('cancel').addEventListener('click', () => {
+            if (currentIndex != -1) {
+                dialog.close()
+                currentIndex = -1
+                toggle()
+            }
+        })
         section.addEventListener('mouseover', () => {
             image.style.display = 'block'
             edit.style.display = 'block'

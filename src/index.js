@@ -1,5 +1,5 @@
 import './style.css'
-import addToMain from './addToMain';
+import addToMain, { toggle } from './addToMain';
 import { update } from './addToMain';
 import addToSide from './addToSide';
 import { createTodo, getTodo, deleteTodo } from "./todo";
