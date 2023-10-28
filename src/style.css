@@ -229,6 +229,7 @@ select:invalid:focus {
 .sideBar-container div {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     gap: 5px;
     padding: 0;
 }
@@ -395,10 +396,11 @@ button:hover {
     }
 
     .exit:hover {
-        background-color: #f37165;
+        background-color: #3498db;
         padding: 3px 7px;
         cursor: pointer;
         opacity: .8;
         border-radius: 10px;
+        color: #ffffff;
     }
 }
